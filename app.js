@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 
 // 'POST, GET, PATCH, PUT, DELETE'
-const uri = process.env.NAME
+const uri = process.env.SUPABASE_URL
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
     serverApi: {
