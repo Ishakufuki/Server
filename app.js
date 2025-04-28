@@ -1,19 +1,27 @@
-const express = require('express')
-const cors = require('cors')
+const{ configDotenv }=require("dotenv");
+const express = require('express');
+
+
+const cors = require('cors');
 const bodyParser = require("body-parser");
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
+configDotenv();
+const port = process.env.PORT || 3000;
+const host = "0.0.0.0";
+
+//Middleware to parse JSON bodies
 const app = express();
+app.use(express)
 
 app.use(cors())
 app.use(bodyParser.json());
 
-const PORT = 3010
+
 
 
 // 'POST, GET, PATCH, PUT, DELETE'
-const uri = "mongodb+srv://user:5ZP8y2HUsWIOUAU9@cict.ziphshv.mongodb.net/?retryWrites=true&w=majority&appName=CICT";
-
+const uri = process.env.NAME
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
     serverApi: {
@@ -86,7 +94,6 @@ app.post("/student", async (req, res)=>{
   }
     
 
-
 });
 
-app.listen(PORT,()=>console.log("app is running on port"+PORT))
+app.listen(port,host,()=>console.log("app is running on port"+port))
